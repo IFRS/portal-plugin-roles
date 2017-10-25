@@ -14,3 +14,11 @@ Domain Path: /lang
 */
 
 require_once('roles.php');
+
+register_activation_hook(__FILE__, function () {
+    ifrs_portal_roles_addRoles();
+});
+
+register_deactivation_hook(__FILE__, function () {
+    ifrs_portal_roles_removeRoles();
+});

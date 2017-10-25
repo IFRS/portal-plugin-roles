@@ -7,7 +7,7 @@ add_action('init', function() {
 });
 
 // Roles
-register_activation_hook(__FILE__, function () {
+function ifrs_portal_roles_addRoles() {
     if (!get_role( 'jornalista' )) {
         add_role('jornalista', __('Jornalista'), array(
             'read'                   => true,
@@ -56,9 +56,9 @@ register_activation_hook(__FILE__, function () {
             'delete_published_pages' => true,
         ));
     }
-});
+}
 
-register_deactivation_hook(__FILE__, function () {
+function ifrs_portal_roles_removeRoles() {
     if (get_role( 'jornalista' )) {
         remove_role( 'jornalista' );
     }
@@ -68,4 +68,4 @@ register_deactivation_hook(__FILE__, function () {
     if (get_role( 'gerente_conteudo' )) {
         remove_role( 'gerente_conteudo' );
     }
-});
+}
