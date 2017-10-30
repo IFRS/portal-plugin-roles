@@ -2,12 +2,16 @@
 // Fix Media Permissions
 add_action('init', function() {
     global $wp_post_types;
-    $wp_post_types['attachment']->cap->edit_posts = 'manage_files';
-    $wp_post_types['attachment']->cap->delete_posts = 'manage_files';
+    $wp_post_types['attachment']->cap->edit_posts = 'edit_files';
+    $wp_post_types['attachment']->cap->delete_posts = 'delete_files';
 });
 
 // Roles
 function ifrs_portal_roles_addRoles() {
+    $admin = get_role('administrator');
+    $admin->add_cap('edit_files');
+    $admin->add_cap('delete_files');
+
     if (!get_role( 'jornalista' )) {
         add_role('jornalista', __('Jornalista'), array(
             'read'                   => true,
@@ -59,6 +63,10 @@ function ifrs_portal_roles_addRoles() {
 }
 
 function ifrs_portal_roles_removeRoles() {
+    $admin = get_role('administrator');
+    $admin->remove_cap('edit_files');
+    $admin->remove_cap('delete_files');
+
     if (get_role( 'jornalista' )) {
         remove_role( 'jornalista' );
     }
