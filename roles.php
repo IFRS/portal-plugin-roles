@@ -2,22 +2,22 @@
 // Fix Media Permissions
 add_action('init', function() {
     global $wp_post_types;
-    $wp_post_types['attachment']->cap->edit_posts = 'edit_files';
-    $wp_post_types['attachment']->cap->delete_posts = 'delete_files';
+    $wp_post_types['attachment']->cap->edit_posts = 'edit_uploads';
+    $wp_post_types['attachment']->cap->delete_posts = 'delete_uploads';
 });
 
 // Roles
 function ifrs_portal_roles_addRoles() {
     $admin = get_role('administrator');
-    $admin->add_cap('edit_files');
-    $admin->add_cap('delete_files');
+    $admin->add_cap('edit_uploads');
+    $admin->add_cap('delete_uploads');
 
     if (!get_role( 'jornalista' )) {
         add_role('jornalista', __('Jornalista'), array(
             'read'                   => true,
             'upload_files'           => true,
-            'edit_files'             => true,
-            'delete_files'           => false,
+            'edit_uploads'           => true,
+            'delete_uploads'         => false,
 
             'publish_posts'          => true,
             'edit_posts'             => true,
@@ -34,8 +34,8 @@ function ifrs_portal_roles_addRoles() {
         add_role('conteudista', __('Conteudista'), array(
             'read'                   => true,
             'upload_files'           => true,
-            'edit_files'             => true,
-            'delete_files'           => false,
+            'edit_uploads'           => true,
+            'delete_uploads'         => false,
 
             'publish_pages'          => false,
             'edit_pages'             => true,
@@ -48,8 +48,8 @@ function ifrs_portal_roles_addRoles() {
         add_role('gerente_conteudo', __('Gerente de Conteúdo'), array(
             'read'                   => true,
             'upload_files'           => true,
-            'edit_files'             => true,
-            'delete_files'           => true,
+            'edit_uploads'           => true,
+            'delete_uploads'         => true,
 
             'publish_pages'          => true,
             'edit_pages'             => true,
@@ -64,8 +64,8 @@ function ifrs_portal_roles_addRoles() {
 
 function ifrs_portal_roles_removeRoles() {
     $admin = get_role('administrator');
-    $admin->remove_cap('edit_files');
-    $admin->remove_cap('delete_files');
+    $admin->remove_cap('edit_uploads');
+    $admin->remove_cap('delete_uploads');
 
     if (get_role( 'jornalista' )) {
         remove_role( 'jornalista' );
