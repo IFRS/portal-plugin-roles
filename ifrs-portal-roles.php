@@ -4,7 +4,7 @@ defined('ABSPATH') or die('No script kiddies please!');
 Plugin Name: IFRS Portal Roles
 Plugin URI:  https://github.com/IFRS/portal-plugin-roles
 Description: Plugin para definir perfis de usuários.
-Version:     1.0.0
+Version:     1.0.1
 Author:      Ricardo Moro
 Author URI:  https://github.com/ricardomoro
 License:     GPL3
